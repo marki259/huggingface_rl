@@ -1,0 +1,27 @@
+name: huggingface-rl
+
+channels:
+  - conda-forge
+  - defaults
+
+dependencies:
+  - stable-baselines3
+  - swig
+  - gymnasium[box2d]
+  - gymnasium
+  - pygame
+  - numpy
+  - pyyaml
+  - imageio
+  - pyglet
+  - tqdm
+
+  - pip:
+      - huggingface-sb3
+      - Pygments
+      - pexpect
+      - jedi
+      - decorator
+      - psutil
+      - jupyter
+      - pyvirtualdisplay
