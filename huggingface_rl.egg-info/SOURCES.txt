@@ -1,0 +1,7 @@
+setup.py
+./functions/__init__.py
+./functions/huggingface_course.py
+huggingface_rl.egg-info/PKG-INFO
+huggingface_rl.egg-info/SOURCES.txt
+huggingface_rl.egg-info/dependency_links.txt
+huggingface_rl.egg-info/top_level.txt
