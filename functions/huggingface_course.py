@@ -12,7 +12,7 @@ import json
 
 from typing import Callable
 
-def record_video(env, Qtable, out_directory, fps=1):
+def record_video(env, Qtable, out_directory, fps=1, max_steps=99):
     """
     Generate a replay video of the agent
     :param env
@@ -26,7 +26,10 @@ def record_video(env, Qtable, out_directory, fps=1):
     state, info = env.reset(seed=random.randint(0, 500))
     img = env.render()
     images.append(img)
-    while not terminated or truncated:
+
+    step = 0
+
+    while not ((terminated or truncated) or (step >= max_steps)):
         # Take the action (index) that have the maximum expected future reward given that state
         action = np.argmax(Qtable[state][:])
         state, reward, terminated, truncated, info = env.step(
@@ -34,6 +37,7 @@ def record_video(env, Qtable, out_directory, fps=1):
         )  # We directly put next_state = state for recording logic
         img = env.render()
         images.append(img)
+        step += 1
     imageio.mimsave(out_directory, [np.array(img) for i, img in enumerate(images)], fps=fps)
 
 
