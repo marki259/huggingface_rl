@@ -1,0 +1,50 @@
+# Refer to https://github.com/lmarza/CartPole-CNN/blob/main/dqnCartPole.py
+import torch
+import torch.nn as nn
+import torch nn.functional as F 
+import gymnasium as gym
+
+import numpy as np
+
+from collections import deque
+from typing import Tuple
+
+class DQN(nn.Module):
+    def __init__(self, space_size: int = 32, n_hidden: int = 32):
+        super(DQN, self).__init__()
+        
+        self.dense1 = nn.Linear(space_size, n_hidden)
+        self.dense2 = nn.Linear(n_hidden, n_hidden)
+        self.output = nn.Linear(n_hidden, 1)
+
+        self.relu = nn.ReLU()
+
+        self.memory = deque(maxlen=10000)
+
+        # Hyperparameters
+        self.epsilon = 1
+        self.epsilon_decay = 0.995
+        self.epsilon_min = 0.01
+        self.learning_rate = 1e-3
+
+        self.batch_size = 32
+
+        self.gamma = 0.95
+
+        self.scores = []
+        self.episodes = []
+        self.average = []
+        
+
+    def remember(self, state_tuple: Tuple):
+        self.memory.append(state_tuple)
+
+    def act(self, state):
+        self.eval()
+
+        if torch.rand(1).item() <= epsilon:
+            return 
+
+    
+        
+
